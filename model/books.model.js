@@ -65,7 +65,7 @@ async function getBookById(bookid) {
     return doc;
   } catch (err) {
     console.error(err);
-    throw new Error("Error fetching book by ID");
+    return "no book exists";
   }
 }
 
@@ -91,7 +91,7 @@ async function deleteBookById(bookid) {
     return "delete successful";
   } catch (err) {
     console.error(err);
-    throw new Error("Error deleting book by ID");
+    return "no book exists";
   }
 }
 
