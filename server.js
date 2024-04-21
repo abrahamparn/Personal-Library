@@ -10,6 +10,7 @@ const fccTestingRoutes = require("./routes/fcctesting.js");
 const runner = require("./test-runner");
 const mongo = require("./service/mongo");
 
+const booksModel = require("./model/books.model");
 const app = express();
 
 app.use("/public", express.static(process.cwd() + "/public"));
@@ -38,6 +39,7 @@ app.use(function (req, res, next) {
 //Start our server and tests!
 async function startSertver() {
   await mongo.mongoConnect();
+  await booksModel.createBooksOnStartup();
   const listener = app.listen(process.env.PORT || 3000, function () {
     console.log("Your app is listening on port " + listener.address().port);
     if (process.env.NODE_ENV === "test") {
